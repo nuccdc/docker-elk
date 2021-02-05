@@ -11,3 +11,7 @@ monitoring.ui.container.elasticsearch.enabled: true
 #
 elasticsearch.username: elastic
 elasticsearch.password: changeme
+
+# Elastic fleet settings
+xpack.security.enabled: true
+xpack.encryptedSavedObjects.encryptionKey: "fe5776af7eefb3e2ef7d5eba9da6c168"

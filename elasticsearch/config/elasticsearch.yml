@@ -9,5 +9,11 @@ network.host: 0.0.0.0
 ## see https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-xpack.html
 #
 xpack.license.self_generated.type: trial
+# Required: true for Elastic Fleet
 xpack.security.enabled: true
 xpack.monitoring.collection.enabled: true
+
+### Elastic Fleet settings
+# API Key service
+# see https://www.elastic.co/guide/en/elasticsearch/reference/current/security-settings.html#api-key-service-settings
+xpack.security.authc.api_key.enabled: true
