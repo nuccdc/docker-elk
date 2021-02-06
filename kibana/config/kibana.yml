@@ -4,7 +4,8 @@
 #
 server.name: kibana
 server.host: 0.0.0.0
-elasticsearch.hosts: [ "http://0.0.0.0:9200" ]
+
+elasticsearch.hosts: [ "http://elasticsearch:9200" ]
 monitoring.ui.container.elasticsearch.enabled: true
 
 ## X-Pack security credentials
@@ -15,3 +16,5 @@ elasticsearch.password: changeme
 # Elastic fleet settings
 xpack.security.enabled: true
 xpack.encryptedSavedObjects.encryptionKey: "fe5776af7eefb3e2ef7d5eba9da6c168"
+# Advertised address to fleet
+xpack.fleet.agents.kibana.host: http://${PUBLIC_IP}
