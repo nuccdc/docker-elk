@@ -17,5 +17,8 @@ elasticsearch.password: ${KIBANA_SYSTEM_PASSWORD}
 xpack.security.enabled: true
 xpack.encryptedSavedObjects.encryptionKey: ${ENCRYPTION_KEY}
 
+# Oh man, I hope this is temporary. 
+xpack.fleet.agents.tlsCheckDisabled: true
+
 # Advertised address to fleet
-xpack.fleet.agents.kibana.host: ${SCHEMA}://${PUBLIC_IP}
+xpack.fleet.agents.kibana.host: ${SCHEMA}://${PUBLIC_IP}:${KIBANA_PORT}

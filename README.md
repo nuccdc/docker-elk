@@ -1,3 +1,27 @@
+# NUCCDC Quickstart
+
+```
+# bring up container
+docker-compose up -d elasticseach
+# wait until it's bootstrapped.
+# change passwords script:
+docker-compose exec -T elasticsearch bin/elasticsearch-setup-passwords auto --batch > passwords.list
+
+# Open up passwords.list and .env to change the necessary values. Read .env and follow instructions.  
+# Use :b to select the buffer.
+vim passwords.list .env
+
+# shut down elasticsearch. 
+docker-compose down
+# bring up everything!
+docker-compose up -d
+
+# tail logs
+docker-compose logs -f
+
+# Access kibana with elastic:<generated password> :)
+```
+
 # Elastic stack (ELK) on Docker
 
 [![Elastic Stack version](https://img.shields.io/badge/Elastic%20Stack-7.10.2-00bfb3?style=flat&logo=elastic-stack)](https://www.elastic.co/blog/category/releases)
