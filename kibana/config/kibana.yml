@@ -10,11 +10,12 @@ monitoring.ui.container.elasticsearch.enabled: true
 
 ## X-Pack security credentials
 #
-elasticsearch.username: elastic
-elasticsearch.password: changeme
+elasticsearch.username: ${KIBANA_SYSTEM_USER}
+elasticsearch.password: ${KIBANA_SYSTEM_PASSWORD}
 
 # Elastic fleet settings
 xpack.security.enabled: true
-xpack.encryptedSavedObjects.encryptionKey: "fe5776af7eefb3e2ef7d5eba9da6c168"
+xpack.encryptedSavedObjects.encryptionKey: ${ENCRYPTION_KEY}
+
 # Advertised address to fleet
-xpack.fleet.agents.kibana.host: http://${PUBLIC_IP}
+xpack.fleet.agents.kibana.host: ${SCHEMA}://${PUBLIC_IP}

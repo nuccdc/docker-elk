@@ -2,6 +2,7 @@ version: '3.2'
 
 services:
   elasticsearch:
+    env_file: ./.env
     build:
       context: elasticsearch/
       args:
@@ -15,10 +16,11 @@ services:
         source: elasticsearch
         target: /usr/share/elasticsearch/data
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "127.0.0.1:9200:9200"
+      - "127.0.0.1:9300:9300"
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ES_JAVA_OPTS: "-Xmx512m -Xms512m"
+      # Used in initial bootstrap
       ELASTIC_PASSWORD: changeme
       # Use single node discovery in order to disable production mode and avoid bootstrap checks.
       # see: https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
@@ -27,6 +29,7 @@ services:
       - elk
 
   logstash:
+    env_file: ./.env
     build:
       context: logstash/
       args:
@@ -41,10 +44,10 @@ services:
         target: /usr/share/logstash/pipeline
         read_only: true
     ports:
-      - "5044:5044"
-      - "5000:5000/tcp"
-      - "5000:5000/udp"
-      - "9600:9600"
+      - "127.0.0.1:5044:5044"
+      - "127.0.0.1:5000:5000/tcp"
+      - "127.0.0.1:5000:5000/udp"
+      - "127.0.0.1:9600:9600"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
     networks:
@@ -53,6 +56,7 @@ services:
       - elasticsearch
 
   kibana:
+    env_file: ./.env
     build:
       context: kibana/
       args:
@@ -63,7 +67,7 @@ services:
         target: /usr/share/kibana/config/kibana.yml
         read_only: true
     ports:
-      - "5601:5601"
+      - "127.0.0.1:5601:5601"
     networks:
       - elk
     depends_on:
