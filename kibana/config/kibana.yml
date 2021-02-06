@@ -4,10 +4,22 @@
 #
 server.name: kibana
 server.host: 0.0.0.0
+
 elasticsearch.hosts: [ "http://elasticsearch:9200" ]
 monitoring.ui.container.elasticsearch.enabled: true
 
 ## X-Pack security credentials
 #
-elasticsearch.username: elastic
-elasticsearch.password: changeme
+elasticsearch.username: ${KIBANA_SYSTEM_USER}
+elasticsearch.password: ${KIBANA_SYSTEM_PASSWORD}
+
+# Elastic fleet settings
+xpack.security.enabled: true
+xpack.encryptedSavedObjects.encryptionKey: ${ENCRYPTION_KEY}
+
+# Oh man, I hope this is temporary. 
+xpack.fleet.agents.tlsCheckDisabled: true
+
+# Advertised address to fleet
+xpack.fleet.agents.kibana.host: ${SCHEMA}://${PUBLIC_IP}:${KIBANA_PORT}
+xpack.fleet.agents.elasticsearch.host: ${SCHEMA}://${PUBLIC_IP}:${ES_PORT}

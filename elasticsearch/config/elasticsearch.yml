@@ -2,12 +2,22 @@
 ## Default Elasticsearch configuration from Elasticsearch base image.
 ## https://github.com/elastic/elasticsearch/blob/master/distribution/docker/src/docker/config/elasticsearch.yml
 #
-cluster.name: "docker-cluster"
-network.host: 0.0.0.0
+cluster.name: ${CLUSTER_NAME}
+# the network accessible IP that the Elastic Agents can connect to.
+network.publish_host: ${PUBLIC_IP}
+# the local interface to bind to 
+network.bind_host: 0.0.0.0
+
 
 ## X-Pack settings
 ## see https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-xpack.html
 #
-xpack.license.self_generated.type: trial
+xpack.license.self_generated.type: basic
+# Required: true for Elastic Fleet
 xpack.security.enabled: true
 xpack.monitoring.collection.enabled: true
+
+### Elastic Fleet settings
+# API Key service
+# see https://www.elastic.co/guide/en/elasticsearch/reference/current/security-settings.html#api-key-service-settings
+xpack.security.authc.api_key.enabled: true
